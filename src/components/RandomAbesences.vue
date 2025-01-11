@@ -23,29 +23,30 @@ export default defineComponent({
         const randomStudents = ref([]);
 
         onMounted(async () => {
-            try {
-                const response = await axios.get('https://localhost:7173/api/Student/students');
-                students.value = response.data;
-            } catch (e) {
-                console.error('Error fetching students:', e);
-                students.value = [];
-            }
-        });
-
-        const getRandomStudents = () => {
-            const numberOfRandomStudents = 5; // Change this number as needed
-            if (students.value.length > 0) {
-                const selectedIndexes = new Set<number>();
-                while (selectedIndexes.size < numberOfRandomStudents) {
-                    const randomIndex = Math.floor(Math.random() * students.value.length);
-                    selectedIndexes.add(randomIndex);
-                }
-                randomStudents.value = Array.from(selectedIndexes).map(index => students.value[index]);
-            }
-        };
-
-        return { randomStudents, getRandomStudents };
+    try {
+        const response = await axios.get('https://localhost:7173/api/Student/students');
+        students.value = response.data;
+    } catch (e) {
+        console.error('Error fetching students:', e);
+        students.value = [];
+        alert('Failed to load students. Please try again later.');
     }
+});
+
+const getRandomStudents = () => {
+    const numberOfRandomStudents = 5;
+    if (students.value.length > 0) {
+        const selectedIndexes = new Set<number>();
+        while (selectedIndexes.size < numberOfRandomStudents) {
+            const randomIndex = Math.floor(Math.random() * students.value.length);
+            selectedIndexes.add(randomIndex);
+        }
+        randomStudents.value = Array.from(selectedIndexes).map(index => students.value[index]);
+    }
+};
+
+return { randomStudents, getRandomStudents };
+}
 });
 </script>
 
