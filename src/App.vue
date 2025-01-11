@@ -1,15 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <!-- <AbsenceTracker msg="Welcome to Your Vue.js + TypeScript App"/> -->
+  <RandomAbesences msg="Welcome to Your Vue.js + TypeScript App"/>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import HelloWorld from './components/HelloWorld.vue';
+import AbsenceTracker from './components/AbsenceTracker.vue';
+import RandomAbesences from './components/RandomAbesences.vue';
 
 @Options({
   components: {
-    HelloWorld,
+    AbsenceTracker,
+    RandomAbesences
   },
 })
 export default class App extends Vue {}
