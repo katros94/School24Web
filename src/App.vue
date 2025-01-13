@@ -1,17 +1,17 @@
 <template>
-  <!-- <AbsenceTracker msg="Welcome to Your Vue.js + TypeScript App"/> -->
-  <RandomAbesences msg="Welcome to Your Vue.js + TypeScript App"/>
+  <!-- <AbsenceTracker msg="Absence Tracker"/> -->
+  <RandomAbsences msg="Random Absences"/>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import AbsenceTracker from './components/AbsenceTracker.vue';
-import RandomAbesences from './components/RandomAbesences.vue';
+import RandomAbsences from './components/RandomAbsences.vue';
 
 @Options({
   components: {
     AbsenceTracker,
-    RandomAbesences
+    RandomAbsences
   },
 })
 export default class App extends Vue {}

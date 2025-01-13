@@ -10,7 +10,7 @@
         </div>
         <h3>Student Lista:</h3>
         <ul v-if="!error" class="student-list">
-            <li v-for="student in filteredStudents" :key="student.id">
+            <li v-for="student in filteredStudents" :key="student.studentId">
                 {{ student.studentName }} (Frånvaro: {{ student.absenceLength }})
             </li>
         </ul>
@@ -21,13 +21,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted } from 'vue';
 import axios from 'axios';
-
-interface Student {
-    studentId: number;
-    studentName: string;
-    schoolName: string;
-    absenceLength: number;
-}
+import { Student } from '@/interfaces/IStudent';
 
 export default defineComponent({
     setup() {
@@ -74,27 +68,27 @@ export default defineComponent({
 
 <style scoped>
 .student-tracker {
-    font-family: 'Inter', sans-serif; /* Modern font */
+    font-family: 'Arial, sans-serif';
     margin: 20px auto;
     padding: 24px;
-    background-color: #f8f9fa; /* Softer background for better readability */
-    border-radius: 12px; /* Larger radius for a more modern feel */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Slightly softer shadow */
+    background-color: #f8f9fa; 
+    border-radius: 12px; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 800px; /* Set a maximum width for responsiveness */
+    max-width: 800px; 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .student-tracker:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Elevation effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
 }
 
 .title {
     font-size: 28px;
-    font-weight: 600; /* Bold for emphasis */
+    font-weight: 600; 
     margin-bottom: 16px;
-    color: #343a40; /* Neutral dark for readability */
+    color: #343a40; 
 }
 
 .filter-container {
@@ -102,30 +96,30 @@ export default defineComponent({
 }
 
 .dropdown {
-    padding: 12px 16px; /* Comfortable padding */
-    font-size: 16px; /* Readable text size */
-    font-weight: 500; /* Slightly bold text */
-    border: 1px solid #ced4da; /* Subtle neutral border */
-    border-radius: 12px; /* Large radius for a modern look */
-    background-color: #ffffff; /* Clean white background */
-    color: #495057; /* Neutral text color for readability */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Light shadow for depth */
-    width: 100%; /* Full width for responsiveness */
-    max-width: 300px; /* Limit width */
-    appearance: none; /* Remove native styling */
+    padding: 12px 16px;
+    font-size: 16px; 
+    font-weight: 500; 
+    border: 1px solid #ced4da;
+    border-radius: 12px;
+    background-color: #ffffff;
+    color: #495057;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 300px;
+    appearance: none;
     cursor: pointer;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dropdown:focus {
-    border-color: #007bff; /* Blue border for focus */
-    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3); /* Focus ring for accessibility */
-    outline: none; /* Remove default focus outline */
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+    outline: none;
 }
 
 .dropdown:hover {
-    border-color: #0056b3; /* Slightly darker border on hover */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Subtle elevation effect */
+    border-color: #0056b3;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown::after {
@@ -138,15 +132,15 @@ export default defineComponent({
     border: solid #495057;
     border-width: 0 2px 2px 0;
     transform: translateY(-50%) rotate(45deg);
-    pointer-events: none; /* Ensure arrow doesn't interfere with clicks */
+    pointer-events: none;
 }
 
 .filter-container {
-    position: relative; /* For positioning the dropdown arrow */
+    position: relative;
 }
 
 .filter-container .dropdown {
-    padding-right: 40px; /* Space for the dropdown arrow */
+    padding-right: 40px;
 }
 
 
@@ -162,18 +156,18 @@ export default defineComponent({
     padding: 16px;
     border: 1px solid #dee2e6;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer; /* Interactive feel */
+    cursor: pointer;
 }
 
 .student-list li:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight elevation on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .error-message {
-    color: #dc3545; /* Modern red color for errors */
+    color: #dc3545;
     font-size: 14px;
     margin-top: 12px;
     font-weight: 500;

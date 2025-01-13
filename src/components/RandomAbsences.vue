@@ -4,9 +4,9 @@
         <button @click="getRandomStudents" class="random-button">+</button>
         <h2>Frånvaroanmälningar</h2>
         <ul>
-            <li v-for="student in randomStudents" :key="student.id">
-                <p><strong>Name:</strong> {{ student.studentName }}</p>
-                <p><strong>Absence Length:</strong> {{ student.absenceLength }}</p>
+            <li v-for="student in randomStudents" :key="student.studentId">
+                <p><strong>Namn:</strong> {{ student.studentName }}</p>
+                <p><strong>Frånvaro:</strong> {{ student.absenceLength }}</p>
             </li>
         </ul>
         <p v-if="randomStudents.length === 0">Inga elever har valts, prova att klicka på + knappen ovan.</p>
@@ -16,11 +16,12 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
 import axios from 'axios';
+import { Student } from '@/interfaces/IStudent';
 
 export default defineComponent({
     setup() {
-        const students = ref([]);
-        const randomStudents = ref([]);
+        const students = ref<Student[]>([]);
+        const randomStudents = ref<Student[]>([]);
 
         onMounted(async () => {
     try {
